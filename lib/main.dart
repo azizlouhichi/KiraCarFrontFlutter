@@ -1,5 +1,6 @@
 // lib/main.dart
 
+import 'package:car_rental/screens/agency_home_screen.dart';
 import 'package:car_rental/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart'; // IMPORTANT: Assurez-vous que le package 'provider' est importé
@@ -193,7 +194,20 @@ class AuthWrapper extends StatelessWidget {
         // Le `context` ici est le BuildContext du builder de FutureBuilder.
         // Tous les widgets retournés ici (HomeScreen ou LoginScreen) sont des enfants de CE contexte.
         if (snapshot.connectionState == ConnectionState.done) {
-          return snapshot.data == true ? const HomeScreen() : const LoginScreen();
+          if (snapshot.data == true) {
+            final currentUser = authService.currentUser;
+
+            if (currentUser == null || currentUser['id'] == null) {
+              throw Exception('Utilisateur non connecté ou ID manquant. Veuillez vous reconnecter.');
+            }
+
+            final int role = currentUser['role'] as int;
+            if (role == "agency"){
+              return const AgencyHomeScreen();
+            }
+            return const HomeScreen();
+          }
+          return const LoginScreen();
         }
         // Afficher un indicateur de chargement pendant la vérification de l'état de connexion.
         return Scaffold(

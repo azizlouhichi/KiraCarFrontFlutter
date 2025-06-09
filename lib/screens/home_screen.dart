@@ -223,6 +223,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
                 MaterialPageRoute(builder: (context) => const ProfileScreen()),
               );
+              IconButton(
+                icon: const Icon(Icons.logout),
+                onPressed: () async {
+                  await authService.logout();
+                  MaterialPageRoute(builder: (context) => const LoginScreen());
+                },
+              );
             },
           ),
           const SizedBox(width: 8),
