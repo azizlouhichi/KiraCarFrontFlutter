@@ -1,0 +1,42 @@
+# pubspec.yaml
+
+name: car_rental
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.6.2 <4.0.0' # Mis à jour pour une meilleure compatibilité
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.5
+  http: ^0.13.4 # Dépendance déplacée ici pour être dans 'dependencies'
+  shared_preferences: ^2.0.13 # Dépendance déplacée ici
+  intl: ^0.17.0 # Dépendance déplacée ici
+  convert: ^3.1.1 # Assurez-vous d'avoir ce package pour jwt_decoder.dart
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Pour ajouter des assets à votre application, ajoutez une section assets comme celle-ci :
+  assets:
+    - assets/logo.png
+    - assets/logo_white.png
+    - assets/fonts/ # <--- AJOUTEZ CETTE LIGNE POUR INCLURE TOUTES LES POLICES DANS CE DOSSIER
+
+  # Pour ajouter des polices personnalisées à votre application :
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf # <--- CHEMIN CORRIGÉ
+        - asset: assets/fonts/Poppins-Bold.ttf # <--- CHEMIN CORRIGÉ
+          weight: 700
